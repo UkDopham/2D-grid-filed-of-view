@@ -4,7 +4,12 @@ using System.Text;
 
 namespace _2DGridFOV.Models
 {
-    public interface IGrid
+    /// <summary>
+    /// Component which represent the grid
+    /// </summary>
+    /// <typeparam name="T">Generic type for the case value</typeparam>
+    public interface IGrid<T>
     {
+
     }
 }
