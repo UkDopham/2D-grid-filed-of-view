@@ -68,25 +68,8 @@ namespace _2DGridFOV.Models.Algorithms
         private List<int[]> DrawLine(int[] a, int[] b)
         {
             List<int[]> positions = new List<int[]>();
-            float dy = b[1] - a[1];
-            float dx = b[0] - a[0];
-            float m = dy / dx;
-            //int x = 0;
-            //int y = 0;
-            //float dx = Math.Abs(b[0] - a[0]);
-            //float dy = Math.Abs(b[1] - a[1]);
-            //float m = dx == 0 ? 0 : dy / dx;
-            //Console.WriteLine($"m : {m} dx : {dx} dy : {dx}");
-            //for (int i = 0;
-            //    i < dx;
-            //    i++)
-            //{
-            //    x = a[0] + i;
-            //    y = (int)(a[1] + m * i);
-            //    int[] newPosition = new int[] { x, y };
-            //    Console.WriteLine($"new position : {newPosition[0]} {newPosition[1]} from {a[0]} {a[1]} to {b[0]} {b[1]}");
-            //    positions.Add(newPosition);
-            //}
+            Equation equation = new Equation(a, b);
+            Console.WriteLine($"{equation} from ({a[0]};{a[1]}) to ({b[0]};{b[1]})");
             return positions;
         }
 

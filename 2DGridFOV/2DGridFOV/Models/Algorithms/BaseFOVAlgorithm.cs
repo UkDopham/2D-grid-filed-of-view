@@ -16,17 +16,17 @@ namespace _2DGridFOV.Models.Algorithms
         protected List<int[]> GetRange(int[] startingCase, int[,] grid, int range)
         {
             List<int[]> cases = new List<int[]>();
-            for(int row = 0;
-                row < grid.GetLength(0);
-                row ++)
+            for(int y = 0;
+                y < grid.GetLength(0);
+                y ++)
             {
-                for (int column = 0;
-                    column < grid.GetLength(1);
-                    column ++)
+                for (int x = 0;
+                    x < grid.GetLength(1);
+                    x ++)
                 {
-                    if(GetLength(startingCase, new int[] { row, column }) <= range)
+                    if(GetLength(startingCase, new int[] { x, y }) <= range)
                     {
-                        cases.Add(new int[] { row, column });
+                        cases.Add(new int[] { x, y });
                     }
                 }
             }
