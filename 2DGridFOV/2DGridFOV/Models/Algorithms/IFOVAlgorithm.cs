@@ -4,8 +4,15 @@ using System.Text;
 
 namespace _2DGridFOV.Models.Algorithms
 {
-    public interface IFOVAlgorithm<T>
+    public interface IFOVAlgorithm
     {
-        public ICase<T>[] GetPath(ICase<T> startingCase, ICase<T> endingCase, IGrid<T> grid);
+        /// <summary>
+        /// Return the cases in the field of view
+        /// </summary>
+        /// <param name="startingCase"></param>
+        /// <param name="grid"></param>
+        /// <param name="range"></param>
+        /// <returns></returns>
+        public List<int[]> GetFOV(int[] startingCase, int[,] grid, int range);
     }
 }
