@@ -12,4 +12,5 @@ Here it's used to simulate the field of view. We'll draw a line between all poin
 ### Equation of the line :
 `y = mx + b` 
 </br> <i> - Coordinates of the point A (xa;yb) and the point B (xb;yb) </i>
-</br> <i> - <b>m</b> = (yb - ya) / (xb - xa) </i>
+</br> <i> - <b>m</b> = (yb - ya) / (xb - xa) </i> the slope
+</br> <i> - <b>b</b> y-intercept
