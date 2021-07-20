@@ -44,13 +44,13 @@ namespace _2DGridFOV.Models
             this._b = a[1] - this._m*a[0]; //b = y - mx
         }
 
-        public float GetXValue(int y) // y = mx + b => x = (y - b)/m
+        public int GetXValue(int y) // y = mx + b => x = (y - b)/m
         {
-            return (y - this._b) / this._m;
+            return (int)((y - this._b) / this._m);
         }
-        public float GetYValue(int x)
+        public int GetYValue(int x)
         {
-            return this._m * x + this._b;
+            return (int)(this._m * x + this._b);
         }
 
         public override string ToString()

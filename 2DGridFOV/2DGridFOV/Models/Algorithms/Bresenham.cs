@@ -7,6 +7,7 @@ namespace _2DGridFOV.Models.Algorithms
 {
     public class Bresenham : BaseFOVAlgorithm, IFOVAlgorithm
     {
+        private const int step = 1;
         public List<int[]> GetFOV(int[] startingCase, int[,] grid, int range)
         {
             List<int[]> inFOVCases = new List<int[]>();
@@ -15,17 +16,11 @@ namespace _2DGridFOV.Models.Algorithms
 
             foreach (int[] inRangeCase in inRangeCases)
             {
-                grid[inRangeCase[0], inRangeCase[1]] = 2;
+                grid[inRangeCase[0], inRangeCase[1]] = grid[inRangeCase[0], inRangeCase[1]] != 9 ? 2 : 9;
                 positions = DrawLine(startingCase, inRangeCase);
                 if(IsPossible(positions, grid))
                 {
-                    foreach(int[] avaibleCase in positions)
-                    {
-                        if(!Contains(inFOVCases,avaibleCase)) 
-                        {
-                            inFOVCases.Add(avaibleCase);
-                        }
-                    }
+                    inFOVCases.Add(inRangeCase);
                 }
             }
             return inFOVCases;
@@ -68,8 +63,37 @@ namespace _2DGridFOV.Models.Algorithms
         private List<int[]> DrawLine(int[] a, int[] b)
         {
             List<int[]> positions = new List<int[]>();
-            Equation equation = new Equation(a, b);
-            Console.WriteLine($"{equation} from ({a[0]};{a[1]}) to ({b[0]};{b[1]})");
+            int[] max = null;
+            int[] min = null;
+            if (a[0] == b[0]) // equation not possible 
+            {
+                max = a[1] < b[1] ? b : a;
+                min = a[1] < b[1] ? a : b;
+
+                Console.WriteLine($"line from ({min[0]};{min[1]}) to ({max[0]};{max[1]})");
+                for (int i = min[1];
+                i <= max[1];
+                i += step)
+                {
+                    Console.WriteLine($"new pos ({a[0]};{i})");
+                    positions.Add(new int[] { a[0], i });
+                }
+            }
+            else
+            {
+                max = a[0] < b[0] ? b : a;
+                min = a[0] < b[0] ? a : b;
+                Equation equation = new Equation(min, max);
+                Console.WriteLine($"{equation} from ({min[0]};{min[1]}) to ({max[0]};{max[1]})");
+                for (int i = min[0];
+                    i <= max[0];
+                    i += step)
+                {
+                    Console.WriteLine($"new pos ({i};{equation.GetYValue(i)})");
+                    positions.Add(new int[] { i, equation.GetYValue(i) });
+                }
+            }
+            
             return positions;
         }
 
@@ -80,7 +104,7 @@ namespace _2DGridFOV.Models.Algorithms
         /// <returns></returns>
         private bool IsPossible(List<int[]> availableCases, int[,] matrix)
         {
-            return availableCases.Where(x => matrix[x[0],x[1]] != 0).Count() == 0;
+            return availableCases.Where(x => matrix[x[0],x[1]] == 9).Count() == 0;
         }
     }
 }

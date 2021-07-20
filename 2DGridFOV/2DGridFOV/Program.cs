@@ -10,8 +10,14 @@ namespace _2DGridFOV
         private static void SimpleGrid()
         {
             Bresenham bresenham = new Bresenham();
-            int[,] matrix = new int[5, 5];
-            int range = 2;
+            int[,] matrix = new int[10, 10];
+            int range = 4;
+            matrix[3, 4] = 9;
+            matrix[4, 4] = 9;
+            matrix[5, 4] = 9;
+
+            matrix[1, 4] = 9;
+            matrix[2, 4] = 9;
             List<int[]> possibleCases = bresenham.GetFOV(new int[] { 3, 3 }, matrix, range);
             matrix[3, 3] = 1;
             Console.WriteLine($"range : {range}");
@@ -29,7 +35,7 @@ namespace _2DGridFOV
                 x < matrix.GetLength(1);
                 x++)
             {
-                Console.Write($"{x} ");
+                Console.Write($" {x} ");
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
@@ -46,7 +52,23 @@ namespace _2DGridFOV
                     x < matrix.GetLength(1);
                     x++)
                 {
-                    Console.Write($"{matrix[x, y]}|");
+                    if (matrix[x, y] < 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                    }
+                    else
+                    {
+                        if (matrix[x,y] == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        }
+
+                    }
+                    Console.Write($"{(matrix[x, y] < 0 ? $"{matrix[x, y]}" : $" {matrix[x, y]}")}|");
                 }
                 Console.WriteLine();
             }
