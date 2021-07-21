@@ -38,9 +38,19 @@ namespace _2DGridFOV.Models.Algorithms
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        private double GetLength(int[] a, int[] b)
+        protected double GetLength(int[] a, int[] b)
         {
-            return Math.Sqrt(Math.Pow((a[0] - b[0]), 2) + Math.Pow((a[1] - b[1]), 2)); 
+            return Math.Sqrt(Math.Pow((a[0] - b[0]), 2) + Math.Pow((a[1] - b[1]), 2));
+        }
+        /// <summary>
+        /// Distance between two points on the Cartesian plane
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        protected double GetLength(int[] a, float[] b)
+        {
+            return Math.Sqrt(Math.Pow((a[0] - b[0]), 2) + Math.Pow((a[1] - b[1]), 2));
         }
     }
 }

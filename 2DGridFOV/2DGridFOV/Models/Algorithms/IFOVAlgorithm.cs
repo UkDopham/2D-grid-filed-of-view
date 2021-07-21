@@ -13,6 +13,6 @@ namespace _2DGridFOV.Models.Algorithms
         /// <param name="grid"></param>
         /// <param name="range"></param>
         /// <returns></returns>
-        public List<int[]> GetFOV(int[] startingCase, int[,] grid, int range);
+        public List<int[]> GetFOV(int[] startingCase, int[,] grid, int range, bool isDebugging);
     }
 }
